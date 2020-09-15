@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: yellowweb
+  namespace: yellow-pipeline-ns
+  labels:
+    app: blue-application-pub
+    subname: bluewebpub
+spec:
+  selector:
+    matchLabels:
+      app: blue-application-pub
+      subname: bluewebpub
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: blue-application-pub
+        subname: bluewebpub
+    spec:
+      containers:
+        - name: container-bluewebpub
+          image: gandhicloudlab/cpro-bankweb:latest
+          imagePullPolicy: Always
+          ports:
+            - name: my-http
+              containerPort: 9030

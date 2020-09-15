@@ -1,0 +1,16 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: bluewebpub
+  namespace: blue-pipeline-ns
+  labels:
+    app: blue-application-pub
+    subname: bluewebpub
+spec:
+  path: /
+  to:
+    kind: Service
+    name: bluewebpub
+    weight: 100
+  port:
+    targetPort: my-http
